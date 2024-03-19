@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyKiller : MonoBehaviour
 {
-    public float groundCheckDistance = 0.1f;
     private bool isGrounded = false;
     public Transform GroundCheck1; 
     public LayerMask ground_layers;
@@ -28,6 +28,10 @@ public class EnemyKiller : MonoBehaviour
             enemyScript.speed = 0f;
             StartCoroutine(DestroyObject(enemy));
         }
+        else if (other.gameObject.CompareTag("Enemy") && IsGrounded())
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
     }
 
     private bool IsGrounded()
@@ -37,10 +41,7 @@ public class EnemyKiller : MonoBehaviour
 
     IEnumerator DestroyObject(GameObject destroyMe)
     {
-
         yield return new WaitForSeconds(3f); // Espera por 3 segundos
-
         Destroy(destroyMe);
-
     }
 }
