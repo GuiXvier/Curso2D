@@ -6636,6 +6636,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c921df51959f7414a97a2efbb6b9ede1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundCheckDistance: 0.1
+  GroundCheck1: {fileID: 2094396219}
+  ground_layers:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1001 &2120280839
 PrefabInstance:
   m_ObjectHideFlags: 0
