@@ -5,12 +5,36 @@ using UnityEngine;
 
 public class EnemyKiller : MonoBehaviour
 {
+    public float groundCheckDistance = 0.1f;
+    private bool isGrounded = false;
+    public Transform GroundCheck1; 
+    public LayerMask ground_layers;
+    private Animator enemyAnimator;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        var enemy = other.gameObject;
+        var enemyScript = enemy.GetComponent<EnemyPatrol>();
+        enemyAnimator = enemy.GetComponent<Animator>();
+
+        if (other.gameObject.CompareTag("Enemy") && !IsGrounded())
         {
-            var enemy = other.gameObject;
-            Destroy(enemy);
+            enemyAnimator.SetTrigger("Die");
+            enemyScript.speed = 0f;
+            StartCoroutine(DestroyObject(enemy));
         }
+    }
+
+    private bool IsGrounded()
+    {
+        return isGrounded = Physics2D.OverlapCircle(GroundCheck1.position, 1, ground_layers);
+    }
+
+    IEnumerator DestroyObject(GameObject destroyMe)
+    {
+
+        yield return new WaitForSeconds(3f); // Espera por 3 segundos
+
+        Destroy(destroyMe);
+
     }
 }
