@@ -10,6 +10,12 @@ public class EnemyKiller : MonoBehaviour
     public Transform GroundCheck1; 
     public LayerMask ground_layers;
     private Animator enemyAnimator;
+    private Animator playerAnimator;
+
+    void Start()
+    {
+        playerAnimator = GetComponent<Animator>();
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         var enemy = other.gameObject;
