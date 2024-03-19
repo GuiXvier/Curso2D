@@ -28,7 +28,7 @@ public class EnemyKiller : MonoBehaviour
             enemyScript.speed = 0f;
             StartCoroutine(DestroyObject(enemy));
         }
-        else if (other.gameObject.CompareTag("Enemy") && IsGrounded())
+        else if ((other.gameObject.CompareTag("Enemy") && IsGrounded()) || transform.position.y < 0.20f)
         {
             SceneManager.LoadScene("SampleScene");
         }
