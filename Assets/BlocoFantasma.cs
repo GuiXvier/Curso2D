@@ -8,11 +8,14 @@ public class BlocoFantasma : MonoBehaviour
         GetComponent<Renderer>().enabled = false;
     }
 
-    // Este método é chamado quando um objeto entra no colisor (trigger)
-    private void OnTriggerEnter(Collider other)
+    // Método chamado quando o Collider2D do jogador entra em colisão com este objeto
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Player Detected");
-        // Ativa a renderização do GameObject quando o jogador entra no colisor
-        GetComponent<Renderer>().enabled = true;
+        // Verifica se a colisão foi com o jogador (ou qualquer outro objeto com a tag "Player")
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // Ativa o Renderer do objeto para torná-lo visível
+            GetComponent<Renderer>().enabled = true;
+        }
     }
 }
